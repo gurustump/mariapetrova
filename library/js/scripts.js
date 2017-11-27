@@ -94,13 +94,13 @@ var timeToWaitForLast = 100;
  * then we can swap out those images since they are located in a data attribute.
 */
 function loadGravatars() {
-  // set the viewport using the function above
-  viewport = updateViewportDimensions();
-  // if the viewport is tablet or larger, we load in the gravatars
-  if (viewport.width >= 768) {
-  jQuery('.comment img[data-gravatar]').each(function(){
-    jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
-  });
+	// set the viewport using the function above
+	viewport = updateViewportDimensions();
+	// if the viewport is tablet or larger, we load in the gravatars
+	if (viewport.width >= 768) {
+		jQuery('.comment img[data-gravatar]').each(function(){
+			jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
+		});
 	}
 } // end function
 
@@ -109,12 +109,71 @@ function loadGravatars() {
  * Put all your regular jQuery in here.
 */
 jQuery(document).ready(function($) {
+	var win = $(window);
+	var html = $('html');
+	var body = $('body');
+	
+	// Hide wp admin bar
+	$('#wpadminbar').addClass('hidden').append('<div class="wpadminbar-activator"></div>').hover(
+		function() {
+			$(this).removeClass('hidden');
+		},
+		function() {
+			$(this).addClass('hidden');
+		}
+	);
+	
+	win.resize(function() {
+		waitForFinalEvent( function() {
+			mobileDeviceBodyClass();
+		}, timeToWaitForLast, 'resizeWindow');
+	});
 
-  /*
-   * Let's fire off the gravatar function
-   * You can remove this if you don't need it
-  */
-  loadGravatars();
+	// Mobile device classes
+	function mobileDeviceType() {
+		if (win.width() > 1024) {
+			return false;
+		} else if (win.width() < 768) {
+			return 'mobile';
+		} else {
+			return 'tablet';
+		}
+	}
+	function mobileDeviceBodyClass() {
+		if (mobileDeviceType() == 'mobile') {
+			body.addClass('mobile').removeClass('tablet');
+		} else if (mobileDeviceType() == 'tablet') {
+			body.addClass('tablet').removeClass('mobile');
+		} else {
+			body.removeClass('mobile tablet');
+		}
+	}
+	mobileDeviceBodyClass();
+	
+	// Control mobile main nav
+	$('.TRIGGER_NAV').click(function(e) {
+		e.preventDefault();
+		if ($(this).hasClass('active')) {
+			setTimeout(function() {
+				html.removeClass('mobile-nav-active');
+			}, 375);
+		} else {
+			html.addClass('mobile-nav-active');
+		}
+		$(this).add('.MAIN_NAV').toggleClass('active');
+	});
+	
+	$('.MAIN_NAV').on('click','a',function(e) {
+		if (mobileDeviceType()) {
+			$('.TRIGGER_NAV').click();
+		}
+	});
+
+	/*
+	* Let's fire off the gravatar function
+	* You can remove this if you don't need it
+	*/
+	//loadGravatars();
 
 
 }); /* end of as page load scripts */

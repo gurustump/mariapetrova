@@ -9,6 +9,111 @@ be seen on the Desktop.
 
 ******************************************************************/
 
+a, a:visited {
+	@include transition(color $transition-speed);
+}
 .wrap {
-  width: 1040px;
+	width: 1040px;
+}
+#logo {
+	float:left;
+}
+#inner-header {
+	@include clearfix;
+	background:rgba($white, .95);
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+.main-nav-container {
+	float:right;
+	position:static;
+	background:none;
+	width:auto;
+	height:auto;
+	& > h5 {
+		display:none;
+	}
+}
+.main-nav {
+	border: 0;
+	overflow:visible;
+	background:none;
+	margin-right:-12px;
+	ul {
+		background:$black url(../images/bg-body.png);
+		margin-top:0;
+	}
+	& > li {
+		float: left;
+		position: relative;
+		a {
+			border-bottom: 0;
+			@include transition(color  $transition-speed, height .275s, line-height .275s);
+			background:none;
+			height:65px;
+			line-height:65px;
+			padding:0 12px;
+			&:hover, &:focus {
+				color:$black;
+				text-decoration:none;
+				background-color:rgba($white,.1);
+				html.secondary-scrolled & {
+					background-color:rgba($black,.5);
+				}
+			}
+		}
+		li a {
+			height:55px;
+			line-height:55px;
+		}
+		ul.sub-menu,
+		ul.children {
+			margin-top: 0;
+			border-top: 0;
+			position: absolute;
+			opacity: 0;
+			@include transition(opacity .5s);
+			height:0;
+			overflow:hidden;
+			z-index: 8999;
+			li {
+				a {
+					padding-left:10px;
+					border-right:0;
+					display:block;
+					border-top:1px solid rgba($white, .1);
+				}
+				ul {
+					top:0;
+					left:100%;
+				}
+			}
+			/* highlight sub-menu current page */
+			li.current-menu-item,
+			li.current_page_item,
+			li.current_page_ancestor {
+				a {}
+			}
+		}
+		/* showing sub-menus */
+		&:hover > ul {
+			top: auto;
+			opacity:1;
+			height:auto;
+		}
+	} /* end .menu ul li */
+
+	/* highlight current page */
+	li.current-menu-item,
+	li.current_page_item,
+	li.current_page_ancestor {
+		a {}
+	}  /* end current highlighters */
+
+} /* end .nav */
+.trigger-nav {
+	display:none;
 }

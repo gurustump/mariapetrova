@@ -95,7 +95,7 @@ a {
  */
 
 a:focus {
-    outline: thin dotted;
+    outline:0;
 }
 
 /**
@@ -115,10 +115,12 @@ a:hover {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
-
+h1, h2, h3, h4, h5, h6, p {
+	margin-top:0;
+}
 h1 {
     font-size: 2em;
-    margin: 0.67em 0;
+    margin-bottom: 0.67em;
 }
 
 /**
@@ -127,6 +129,8 @@ h1 {
 
 abbr[title] {
     border-bottom: 1px dotted;
+    border-bottom:0;
+	text-decoration:none;
 }
 
 /**
@@ -251,7 +255,7 @@ dl,
 menu,
 ol,
 ul {
-    margin: 1em 0;
+    margin:0;
 }
 
 dd {
@@ -266,7 +270,6 @@ menu {
     padding: 0 0 0 40px;
 }
 
-ol,
 ul {
     padding: 0;
     list-style-type: none;
@@ -323,9 +326,9 @@ figure {
  */
 
 fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+    border:0;
+    margin:0;
+    padding:0;
 }
 
 /**
@@ -419,9 +422,9 @@ input[type="radio"] {
 
 input[type="search"] {
     -webkit-appearance: textfield; /* 1 */
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box; /* 2 */
-    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* 2 */
+    box-sizing: border-box;
 }
 
 /**
@@ -452,6 +455,9 @@ input::-moz-focus-inner {
 textarea {
     overflow: auto; /* 1 */
     vertical-align: top; /* 2 */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* 2 */
+    box-sizing: border-box;
 }
 
 /* ==========================================================================
@@ -469,11 +475,11 @@ table {
 
 
 // BORDER-BOX ALL THE THINGS! (http://paulirish.com/2012/box-sizing-border-box-ftw/)
-* {
+/* * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing:    border-box;
     box-sizing:         border-box;
-}
+}*/
 
 // http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
 .image-replacement,

@@ -14,15 +14,45 @@ and will be used across all viewports.
 /*********************
 GENERAL STYLES
 *********************/
-
+html.mariapetrova {
+	height:100%;
+	margin-top:0 !important;
+	overflow-x:hidden;
+	background:$white;
+	&.mobile-nav-active {
+		body {
+			overflow:hidden;
+			height:100%;
+			header.header, #inner-header {
+				height:100%;
+			}
+			#inner-header {
+				position:relative;
+				overflow-y:auto;
+				overflow-x:hidden;
+			}
+		}
+	}
+	/*&:after {
+		content:"";
+		height:100%;
+		width:100%;
+		background:url(../images/bg-body.png);
+		opacity:.6;
+		position:absolute;
+		top:0;
+		left:0;
+	}*/
+}
 body {
+	height:100%;
 	font-family: $lato;
-	font-size: 100%;
-	line-height: 1.5;
-	color: $text-color;
-	background-color: $gray;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
+	font-size:14px;
+	line-height:1.5;
+	color:$text-color;
+	background-color:$white;
+  	-webkit-font-smoothing:antialiased;
+  	-moz-osx-font-smoothing:grayscale;
 }
 
 /********************
@@ -69,10 +99,21 @@ style a page via class
 /*********************
 LAYOUT & GRID STYLES
 *********************/
-
+#container {
+	position:relative;
+	z-index:1;
+	height:100%;
+	#content {
+		min-height:100%;
+		padding-top:80px;
+		@include box-sizing;
+	}
+}
+.header .wrap {
+	margin:0;
+}
 .wrap {
-	width: 96%;
-	margin: 0 auto;
+	margin:0 15px;
 }
 
 /*********************
@@ -83,8 +124,8 @@ a, a:visited {
 	color: $link-color;
 
 	/* on hover */
-	&:hover, &:focus {
-		color: $link-hover;
+	&:hover {
+		color:$link-hover;
 	}
 
 	/* on click */
@@ -153,16 +194,33 @@ HEADER STYLES
 *********************/
 
 .header {
-	background-color: $black;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	z-index:8999;
+	@include transition(background-color $transition-speed, height $transition-speed);
+}
+.inner-header-mobile {
+	background:rgba($white, .95);
 }
 
-	#logo {
-		margin: 0.75em 0;
-
-		a {
-			color: $white;
-		}
+#logo {
+	height:80px;
+	width:70px;
+	padding:5px 0;
+	@include box-sizing;
+	margin:0 0 0 35px;
+	a {
+		width:100%;
+		height:100%;
+		display:block;
+		text-indent:-9999px;
+		outline:none;
+		background:$white url(../images/logo.png) no-repeat;
+		background-size:contain;
 	}
+}
 
 /*********************
 NAVIGATION STYLES
@@ -176,26 +234,57 @@ the navs on the site so our css is cleaner
 and more scalable.
 */
 
-.nav {
-	border-bottom: 0;
-	margin: 0;
-
+.main-nav-container {
+	position:absolute;
+	left:110%;
+	top:0;
+	width:100%;
+	background:$white;
+	height:100%;
+	@include transition(left $transition-speed);
+	&.active {
+		left:0;
+	}
+	& > h5 {
+		height:60px;
+		line-height:60px;
+		text-align:center;
+		margin-bottom:0;
+	}
+}
+.main-nav {
+	border-bottom:0;
+	margin:10px 0 0;
+	overflow:auto;
+	z-index:9998;
+	background:$white;
+	border-top:1px solid rgba($black, .1);
 	li {
-
 		a {
-			display: block;
-			color: $white;
+			white-space:nowrap;
+			display:block;
+			color:$light-gray;
 			text-decoration: none;
-			padding: 0.75em;
-
-			/*
-			remember this is for mobile ONLY, so there's no need
-			to even declare hover styles here, you can do it in
-			the style.scss file where it's relevant. We want to
-			keep this file as small as possible!
-			*/
-			&:hover, &:focus {
-
+			text-transform:uppercase;
+			padding:0 20px;
+			height:60px;
+			line-height:60px;
+			border-bottom:1px solid rgba($black, .1);
+			// background:rgba($white,.04);
+			&:hover {
+				color:$light-gray;
+			}
+			&:focus {
+				color:$white;
+				background:rgba($black, .8);
+			}
+		}
+		li {
+			a {
+				background:none;
+				height:45px;
+				line-height:45px;
+				padding:0 10px;
 			}
 		}
 
@@ -245,6 +334,60 @@ and more scalable.
 	}  /* end current highlighters */
 
 } /* end .nav */
+.trigger-nav {
+	height:80px;
+	margin-right:8px;
+	color:$white;
+	position:fixed;
+	padding:28px 18px;
+	top:0;
+	right:-4px;
+	font-size:17px;
+	z-index:9999;
+	border-bottom:0;
+	outline:none !important;
+	@include box-sizing;
+	@include transition(top .275ms);
+	&.active {
+		@include box-sizing;
+	}
+	& > span {
+		float:left;
+		height:24px;
+		line-height:24px;
+	}
+	.ic {
+		@include box-sizing;
+		padding-top:5px;
+		@include transition(all 275ms);
+		& > span {
+			background:$dark-gray;
+			@include border-radius(1px);
+			display:block;
+			height:2px;
+			margin-bottom:4px;
+			@include transition(all 275ms);
+			width:22px;
+		}
+	}
+	&.active {
+		.ic {
+			@include transform(rotate(-45deg));
+			& > span {
+				background:#aaa;
+				&.bar-1 {
+					@include transform(translateY(6px));
+				}
+				&.bar-2 {
+					opacity:0;
+				}
+				&.bar-3 {
+					@include transform(rotate(-90deg) translateX(5px));
+				}
+			}
+		}
+	}
+}
 
 
 /*********************
@@ -252,242 +395,253 @@ POSTS & CONTENT STYLES
 *********************/
 
 #content {
-	margin-top: 1.5em;
 }
 
-		.hentry {
-			background-color: $white;
-			border-radius: 3px;
-			margin-bottom: 1.5em;
-			border: 1px solid $border-color;
+.hentry {
+	background-color: $white;
+	border-radius: 3px;
+	margin-bottom: 1.5em;
 
-			header {
-				border-bottom: 1px solid $light-gray;
-				padding: 1.5em;
-			}
-
-			footer {
-				padding: 1.5em;
-				border-top: 1px solid $light-gray;
-
-				p {
-					margin: 0;
-				}
-			}
-
-		} /* end .hentry */
-
-		.single-title,
-		.page-title,
-		.entry-title {
-			margin: 0;
-		}
-
-		.single-title {}
-
-		.page-title {}
-
-		.entry-title {}
-
-		.archive-title {}
-
-		/* want to style individual post classes? Booya! */
-		.post-id {}         /* post by id (i.e. post-3) */
-		.post {}            /* general post style */
-		.page {}            /* general article on a page style */
-		.attachment {}      /* general style on an attatchment */
-		.sticky {}          /* sticky post style */
-		.hentry {}          /* hentry class */
-		.category-slug {}   /* style by category (i.e. category-videos) */
-		.tag-slug {}        /* style by tag (i.e. tag-news) */
-
-		/* post meta */
-		.byline {
-			color: $meta-gray;
-			font-style: italic;
-			margin: 0;
-
-			time {}
-		}
-
-		/* entry content */
-		.entry-content {
-			padding: 1.5em 1.5em 0;
-
-			p {
-				margin: 0 0 1.5em;
-			}
-
-
-			ul, ol, table, dl {}
-
-			ul, ol {
-
-				li {}
-
-			}
-
-			ul {
-
-				li {}
-
-			}
-
-			ol {
-
-				li {}
-
-			}
-
-			table {
-				width: 100%;
-				border: 1px solid $gray;
-				margin-bottom: 1.5em;
-
-				caption {
-					margin: 0 0 7px;
-					font-size: 0.75em;
-					color: $meta-gray;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-				}
-			}
-
-			tr {
-				border-bottom: 1px solid $gray;
-
-				&:nth-child(even) {
-					background-color: $light-gray;
-				}
-			}
-
-			td {
-				padding: 7px;
-				border-right: 1px solid $gray;
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			th {
-				background-color: $light-gray;
-				border-bottom: 1px solid $gray;
-				border-right: 1px solid $gray;
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			blockquote {
-				margin: 0 0 1.5em 0.75em;
-				padding: 0 0 0 0.75em;
-				border-left: 3px solid $blue;
-				font-style: italic;
-				color: $meta-gray;
-
-				&:before {}
-
-			}
-
-			dl {}
-
-			dt {}
-
-			dd {
-				margin-left: 0;
-				font-size: 0.9em;
-				color: #787878;
-				margin-bottom: 1.5em;
-			}
-
-			img {
-				margin: 0 0 1.5em 0;
-				max-width: 100%;
-				height: auto;
-			}
-
-			/*
-			image alignment on a screen this size may be
-			a bit difficult. It's set to start aligning
-			and floating images at the next breakpoint,
-			but it's up to you. Feel free to change it up.
-			*/
-			.alignleft, img.alignleft {}
-			.alignright, img.alignright {}
-			.aligncenter, img.aligncenter {}
-
-			.size-auto,
-			.size-full,
-			.size-large,
-			.size-medium,
-			.size-thumbnail {
-				max-width: 100%;
-				height: auto;
-			}
-
-			pre {
-				background: $black;
-				color: $light-gray;
-				font-size: 0.9em;
-				padding: 1.5em;
-				margin: 0 0 1.5em;
-				border-radius: 3px;
-			}
-
-		} /* end .entry-content */
-
-		.wp-caption {
-			max-width: 100%;
-			background: #eee;
-			padding: 5px;
-
-			/* images inside wp-caption */
-			img {
-				max-width: 100%;
-				margin-bottom: 0;
-				width: 100%;
-			}
-
-			p.wp-caption-text {
-				font-size: 0.85em;
-				margin: 4px 0 7px;
-				text-align: center;
-			}
-
-		} /* end .wp-caption */
-
-		/* image gallery styles */
-		.gallery {
-
-			dl {
-
-				a {}
-
-				img {}
-
-			}
-
-			dt {}
-
-			dd {}
-
-		} /* end .gallery */
-
-		/* gallery caption styles */
-		.gallery-caption {}
-
-		.size-full {}
-		.size-large {}
-		.size-medium {}
-		.size-thumbnail {}
-
-	// the tag output
-	.tags {
-		margin: 0;
+	header {
+		border-bottom: 1px solid $light-gray;
+		padding: 1.5em;
 	}
 
+	footer {
+		padding: 1.5em;
+		border-top: 1px solid $light-gray;
+
+		p {
+			margin: 0;
+		}
+	}
+
+} /* end .hentry */
+
+.single-title,
+.page-title,
+.entry-title {
+	margin: 0;
+}
+
+.single-title {}
+
+.page-title {}
+
+.entry-title {}
+
+.archive-title {}
+
+/* want to style individual post classes? Booya! */
+.post-id {}         /* post by id (i.e. post-3) */
+.post {}            /* general post style */
+.page {}            /* general article on a page style */
+.attachment {}      /* general style on an attatchment */
+.sticky {}          /* sticky post style */
+.hentry {}          /* hentry class */
+.category-slug {}   /* style by category (i.e. category-videos) */
+.tag-slug {}        /* style by tag (i.e. tag-news) */
+
+/* post meta */
+.byline {
+	color: $meta-gray;
+	font-style: italic;
+	margin: 0;
+
+	time {}
+}
+
+/* entry content */
+.entry-content {
+	padding: 1.5em 1.5em 0;
+
+	p {
+		margin: 0 0 1.5em;
+	}
+
+
+	ul, ol, table, dl {}
+
+	ul, ol {
+
+		li {}
+
+	}
+
+	ul {
+
+		li {}
+
+	}
+
+	ol {
+
+		li {}
+
+	}
+
+	table {
+		width: 100%;
+		border: 1px solid $gray;
+		margin-bottom: 1.5em;
+
+		caption {
+			margin: 0 0 7px;
+			font-size: 0.75em;
+			color: $meta-gray;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+	}
+
+	tr {
+		border-bottom: 1px solid $gray;
+
+		&:nth-child(even) {
+			background-color: $light-gray;
+		}
+	}
+
+	td {
+		padding: 7px;
+		border-right: 1px solid $gray;
+
+		&:last-child {
+			border-right: 0;
+		}
+	}
+
+	th {
+		background-color: $light-gray;
+		border-bottom: 1px solid $gray;
+		border-right: 1px solid $gray;
+
+		&:last-child {
+			border-right: 0;
+		}
+	}
+
+	blockquote {
+		margin: 0 0 1.5em 0.75em;
+		padding: 0 0 0 0.75em;
+		border-left: 3px solid $blue;
+		font-style: italic;
+		color: $meta-gray;
+
+		&:before {}
+
+	}
+
+	dl {}
+
+	dt {}
+
+	dd {
+		margin-left: 0;
+		font-size: 0.9em;
+		color: #787878;
+		margin-bottom: 1.5em;
+	}
+
+	img {
+		margin: 0 0 1.5em 0;
+		max-width: 100%;
+		height: auto;
+	}
+
+	/*
+	image alignment on a screen this size may be
+	a bit difficult. It's set to start aligning
+	and floating images at the next breakpoint,
+	but it's up to you. Feel free to change it up.
+	*/
+	.alignleft, img.alignleft {}
+	.alignright, img.alignright {}
+	.aligncenter, img.aligncenter {}
+
+	.size-auto,
+	.size-full,
+	.size-large,
+	.size-medium,
+	.size-thumbnail {
+		max-width: 100%;
+		height: auto;
+	}
+
+	pre {
+		background: $black;
+		color: $light-gray;
+		font-size: 0.9em;
+		padding: 1.5em;
+		margin: 0 0 1.5em;
+		border-radius: 3px;
+	}
+
+} /* end .entry-content */
+
+.wp-caption {
+	max-width: 100%;
+	background: #eee;
+	padding: 5px;
+
+	/* images inside wp-caption */
+	img {
+		max-width: 100%;
+		margin-bottom: 0;
+		width: 100%;
+	}
+
+	p.wp-caption-text {
+		font-size: 0.85em;
+		margin: 4px 0 7px;
+		text-align: center;
+	}
+
+} /* end .wp-caption */
+
+/* image gallery styles */
+.gallery {
+
+	dl {
+
+		a {}
+
+		img {}
+
+	}
+
+	dt {}
+
+	dd {}
+
+} /* end .gallery */
+
+/* gallery caption styles */
+.gallery-caption {}
+
+.size-full {}
+.size-large {}
+.size-medium {}
+.size-thumbnail {}
+
+// the tag output
+.tags {
+	margin: 0;
+}
+.thumb-grid {
+	@include clearfix;
+	& > li {
+		width:33.3333%;
+		float:left;
+		a {
+			display:block;
+			img {
+				display:block;
+				width:100%;
+			}
+		}
+	}
+}
 /******************************************************************
 PAGE NAVI STYLES
 ******************************************************************/
@@ -861,29 +1015,84 @@ FOOTER STYLES
 *********************/
 
 .footer {
-	clear: both;
-	background-color: $black;
-	color: $light-gray;
+	clear:both;
+	background-color:$white;
+	color:$light-gray;
 }
 
-	/*
-	if you checked out the link above:
-	http://www.alistapart.com/articles/organizing-mobile/
-	you'll want to style the footer nav
-	a bit more in-depth. Remember to keep
-	it simple because you'll have to
-	override these styles for the desktop
-	view.
-	*/
-	.footer-links {
+/*
+if you checked out the link above:
+http://www.alistapart.com/articles/organizing-mobile/
+you'll want to style the footer nav
+a bit more in-depth. Remember to keep
+it simple because you'll have to
+override these styles for the desktop
+view.
+*/
+.footer-links {
 
-		ul {
+	ul {
 
-			li {}
+		li {}
 
+	}
+
+} /* end .footer-links */
+
+
+.copyright {
+	font-size:10px;
+}
+
+/******************************************
+ADMIN BAR CUSTOMIZATION
+******************************************/
+
+html body {
+	div#wpadminbar {
+		border-bottom:1px solid #444;
+		z-index:9999 !important;
+		& > .wpadminbar-activator {
+			display:block;
+			position:absolute;
+			left:0;
+			bottom:-15px;
+			height:15px;
+			width:30px;
+			text-indent:-9999px;
+			@include box-sizing;
+			background:#23282d;
+			/*@include css-gradient($from: #23282d, $to: #353d44, $vstart:"top", $vend:"bottom");*/
+			@include border-radius(0 0 5px 5px);
+			border:1px solid #444;
+			border-top:0;
+			border-left-color:#333;
+			cursor:pointer;
+			&:after {
+				content:"";
+				border-style:solid;
+				border-color:#555 transparent;
+				border-width:5px 5px 0;
+				position:absolute;
+				margin-left:-5px;
+				left:50%;
+				top:5px;
+			}
 		}
-
-	} /* end .footer-links */
-
-
-	.copyright {}
+		&.wpadminbar-shown {
+			& > .wpadminbar-activator {
+				display:none;
+			}
+		}
+		&.hidden {
+			border-bottom:2px solid transparent;
+			@include transform(translateY(-97%));
+			@include transition(transform, 2s);
+		}
+	}
+	&.hide-admin-bar {
+		div#wpadminbar {
+			display:none;
+		}
+	}
+}

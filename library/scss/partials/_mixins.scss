@@ -32,14 +32,32 @@ Thanks to @anthonyshort for the inspiration on these.
 USAGE: @include transition(all 0.2s ease-in-out);
 */
 
+// defining prefixes so we can use them in mixins below
+$prefixes: ("-webkit-", "-moz-", "-ms-", "-o-",  "");
+
 @mixin transition($transition...) {
-  // defining prefixes so we can use them in mixins below
-  $prefixes:      ("-webkit-", "" );
-  @each $prefix in $prefixes {
-    #{$prefix}transition: $transition;
-  }
+	@each $prefix in $prefixes {
+		#{$prefix}transition: $transition;
+	}
 }
 
+@mixin transition-delay($transition-delay...) {
+	@each $prefix in $prefixes {
+		#{$prefix}transition-delay: $transition-delay;
+	}
+}
+
+@mixin transform($transform...) {
+	@each $prefix in $prefixes {
+		#{$prefix}transform: $transform;
+	}
+}
+
+@mixin v-center {
+	@include transform(translateY(-50%));
+	position:relative;
+	top:50%;
+}
 /*********************
 CSS3 GRADIENTS
 Be careful with these since they can
@@ -47,13 +65,45 @@ really slow down your CSS. Don't overdo it.
 *********************/
 
 /* @include css-gradient(#dfdfdf,#f8f8f8); */
-@mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
+
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+@mixin css-gradient($from: #dfdfdf, $to: #f8f8f8, $vstart:"", $vend:"", $hstart:"", $hend:"" ) {
+	$webkitDirectionString1: "";
+	$otherBrowserDirectionString: "";
+	$basicDirectionString: "";
+	@if $vstart or $vend or $hstart or $hend {
+		$webkitDirectionString1: linear, unquote($hstart) unquote($vstart), unquote($hstart) unquote($vend);
+		$otherBrowserDirectionString: unquote($hstart) unquote($vstart);
+		$basicDirectionString: to unquote($hend) unquote($vend);
+	} @else {
+		$webkitDirectionString1: "";
+		$otherBrowserDirectionString: "";
+		$basicDirectionString: "";
+	}
 	background-color: $to;
-	background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
-	background-image: -webkit-linear-gradient(top, $from, $to);
-	background-image: -moz-linear-gradient(top, $from, $to);
-	background-image: -o-linear-gradient(top, $from, $to);
-	background-image: linear-gradient(to bottom, $from, $to);
+	background-image: -webkit-gradient($webkitDirectionString1 from($from), to($to));
+	background-image: -webkit-linear-gradient($otherBrowserDirectionString $from, $to);
+	background-image: -moz-linear-gradient($otherBrowserDirectionString $from, $to);
+	background-image: -o-linear-gradient($otherBrowserDirectionString $from, $to);
+	background-image: linear-gradient($basicDirectionString $from, $to);
+}
+@mixin css-gradient-3($color, $color1, $loc1, $color2, $loc2, $color3, $loc3, $startLoc:top) {
+	background:-webkit-linear-gradient($startLoc, $color1 $loc1, $color2 $loc2, $color3 $loc3);
+	background:-moz-linear-gradient($startLoc, $color1 $loc1, $color2 $loc2, $color3 $loc3);
+	background:-ms-linear-gradient($startLoc, $color1 $loc1, $color2 $loc2, $color3 $loc3);
+	background:-o-linear-gradient($startLoc, $color1 $loc1, $color2 $loc2, $color3 $loc3);
+	background:linear-gradient($startLoc, $color1 $loc1, $color2 $loc2, $color3 $loc3);
+	background-color:$color;
+	background-repeat:no-repeat;
+}
+@mixin css-gradient-plus-img($from: #dfdfdf, $to: #f8f8f8, $vstart:"", $vend:"", $hstart:"", $hend:"", $url:"") {
+	background-color: $to;
+	background-image: -webkit-gradient(linear, unquote($hstart) unquote($vstart), unquote($hstart) unquote($vend), from($from), to($to)), url($url);
+	background-image: -webkit-linear-gradient(unquote($hstart) unquote($vstart), $from, $to), url($url);
+	background-image: -moz-linear-gradient(unquote($hstart) unquote($vstart), $from, $to), url($url);
+	background-image: -o-linear-gradient(unquote($hstart) unquote($vstart), $from, $to), url($url);
+	background-image: linear-gradient(to unquote($hend) unquote($vend), $from, $to), url($url);
+	background-repeat:repeat repeat;
 }
 
 /*********************
@@ -64,10 +114,104 @@ BOX SIZING
 /* NOTE: value of "padding-box" is only supported in Gecko. So
 probably best not to use it. I mean, were you going to anyway? */
 @mixin box-sizing($type: border-box) {
-	-webkit-box-sizing: $type;
-	-moz-box-sizing:    $type;
-	-ms-box-sizing:     $type;
-	box-sizing:         $type;
+	@each $prefix in $prefixes {
+		#{$prefix}box-sizing: $type;
+	}
 }
 
+@mixin border-radius($radius:5px) {
+	@each $prefix in $prefixes {
+		#{$prefix}border-radius: $radius;
+	}
+}
+
+@mixin columns($args) {
+	@each $prefix in $prefixes {
+		#{$prefix}columns: $args;
+	}
+}
+
+@mixin column-gap($args) {
+	@each $prefix in $prefixes {
+		#{$prefix}column-gap: $args;
+	}
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder	{@content}
+	&:-moz-placeholder				{@content}
+	&::-moz-placeholder			{@content}
+	&:-ms-input-placeholder		{@content}  
+}
+
+@mixin clearfix {
+	&:after {
+		content:".";
+		height:0;
+		display:block;
+		visibility:hidden;
+		clear:both;
+	}
+}
+
+
+// triangles
+@mixin tri($direction, $girth, $length, $color, $margin:0, $display:inline-block, $float:none, $center:vcenter) {
+	&:after {
+		content:"";
+		width:0;
+		height:0;
+		display:$display;
+		float:$float;
+		margin:$margin;
+		@if $direction == 'left' or $direction =='right' {
+		border-top:$girth solid transparent;
+		border-bottom:$girth solid transparent;
+		} @else {
+			border-left:$girth solid transparent;
+			border-right:$girth solid transparent;
+		}
+		@if $center == 'vcenter' {
+			@include v-center;
+		}
+		@if $direction == 'left' {
+			border-right:$length solid $color;
+		} @else if  $direction == 'right' {
+			border-left:$length solid $color;
+		} @else if  $direction == 'top' {
+			border-bottom:$length solid $color;
+		} @else {
+			border-top:$length solid $color;
+		}
+	}
+}
+@mixin tri-before($direction, $girth, $length, $color, $margin:0, $display:inline-block, $float:none, $center:vcenter) {
+	&:before {
+		content:"";
+		width:0;
+		height:0;
+		display:$display;
+		float:$float;
+		margin:$margin;
+		@if $direction == 'left' or $direction =='right' {
+		border-top:$girth solid transparent;
+		border-bottom:$girth solid transparent;
+		} @else {
+			border-left:$girth solid transparent;
+			border-right:$girth solid transparent;
+		}
+		@if $center == 'vcenter' {
+			@include v-center;
+		}
+		@if $direction == 'left' {
+			border-right:$length solid $color;
+		} @else if  $direction == 'right' {
+			border-left:$length solid $color;
+		} @else if  $direction == 'top' {
+			border-bottom:$length solid $color;
+		} @else {
+			border-top:$length solid $color;
+		}
+	}
+}
 

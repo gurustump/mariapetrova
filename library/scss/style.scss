@@ -93,6 +93,12 @@ you can add resource intensive styles.
 	@import "breakpoints/768up";
 
 } // end of media query
+@media only screen and (min-width: 1024px) {
+
+	// styles in 1024up.scss
+	@import "breakpoints/1024up";
+
+} // end of media query
 
 /*********************
 DESKTOP
