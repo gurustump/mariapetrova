@@ -12,9 +12,6 @@ be seen on the Desktop.
 a, a:visited {
 	@include transition(color $transition-speed);
 }
-.wrap {
-	width: 1040px;
-}
 #logo {
 	float:left;
 }
@@ -24,9 +21,28 @@ a, a:visited {
 }
 
 /*********************
+LAYOUT & GRID STYLES
+*********************/
+#container {
+	#content {
+		padding-top:195px;
+	}
+}
+
+/*********************
+HEADER STYLES
+*********************/
+#logo {
+	height:195px;
+	a {
+		width:110px;
+		background-position:center center;
+	}
+}
+
+/*********************
 NAVIGATION STYLES
 *********************/
-
 .main-nav-container {
 	float:right;
 	position:static;
@@ -41,17 +57,14 @@ NAVIGATION STYLES
 	border: 0;
 	overflow:visible;
 	background:none;
-	margin-right:-12px;
-	ul {
-		background:$black url(../images/bg-body.png);
-		margin-top:0;
-	}
+	margin-right:12px;
+	margin-top:65px;
 	& > li {
 		float: left;
 		position: relative;
 		a {
 			border-bottom: 0;
-			@include transition(color  $transition-speed, height .275s, line-height .275s);
+			@include transition(color $transition-speed, border $transition-speed, height .275s, line-height .275s);
 			background:none;
 			height:65px;
 			line-height:65px;
@@ -63,6 +76,14 @@ NAVIGATION STYLES
 				html.secondary-scrolled & {
 					background-color:rgba($black,.5);
 				}
+				span {
+					border-color:$black;
+				}
+			}
+			span {
+				@include transition(border $transition-speed);
+				padding-bottom:3px;
+				border-bottom:1px solid transparent;
 			}
 		}
 		li a {

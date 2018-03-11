@@ -9,3 +9,31 @@ on larger screens.
 
 ******************************************************************/
 
+/*********************
+PAGE SPECIFIC STYLES
+*********************/
+body.single-works {
+	.entry-content {
+		width:100%;
+		@include box-sizing;
+		max-width:100%;
+	}
+	.work-description {
+		width:270px;
+		float:left;
+		/*position:absolute;
+		left:30px;
+		top:20px;*/
+	}
+	.work-gallery {
+		float:left;
+		width:100%;
+		@include box-sizing;
+		padding-left:320px;
+		margin-left:-320px;
+		& > li {
+			width:960px;
+			margin:0 auto;
+		}
+	}
+}

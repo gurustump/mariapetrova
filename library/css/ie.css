@@ -255,7 +255,8 @@ GENERAL STYLES
 LAYOUT & GRID STYLES
 *********************/
 .wrap {
-  width: 760px; }
+  width: 728px;
+  margin: 0 auto; }
 
 /*********************
 HEADER STYLES
@@ -386,9 +387,6 @@ a, a:visited {
   -o-transition: color 375ms;
   transition: color 375ms; }
 
-.wrap {
-  width: 1040px; }
-
 #logo {
   float: left; }
 
@@ -400,6 +398,21 @@ a, a:visited {
     display: block;
     visibility: hidden;
     clear: both; }
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+#container #content {
+  padding-top: 195px; }
+
+/*********************
+HEADER STYLES
+*********************/
+#logo {
+  height: 195px; }
+  #logo a {
+    width: 110px;
+    background-position: center center; }
 
 /*********************
 NAVIGATION STYLES
@@ -417,24 +430,22 @@ NAVIGATION STYLES
   border: 0;
   overflow: visible;
   background: none;
-  margin-right: -12px;
+  margin-right: 12px;
+  margin-top: 65px;
   /* end .menu ul li */
   /* highlight current page */
   /* end current highlighters */ }
-  .main-nav ul {
-    background: #000 url(../images/bg-body.png);
-    margin-top: 0; }
   .main-nav > li {
     float: left;
     position: relative;
     /* showing sub-menus */ }
     .main-nav > li a {
       border-bottom: 0;
-      -webkit-transition: color 375ms, height 0.275s, line-height 0.275s;
-      -moz-transition: color 375ms, height 0.275s, line-height 0.275s;
-      -ms-transition: color 375ms, height 0.275s, line-height 0.275s;
-      -o-transition: color 375ms, height 0.275s, line-height 0.275s;
-      transition: color 375ms, height 0.275s, line-height 0.275s;
+      -webkit-transition: color 375ms, border 375ms, height 0.275s, line-height 0.275s;
+      -moz-transition: color 375ms, border 375ms, height 0.275s, line-height 0.275s;
+      -ms-transition: color 375ms, border 375ms, height 0.275s, line-height 0.275s;
+      -o-transition: color 375ms, border 375ms, height 0.275s, line-height 0.275s;
+      transition: color 375ms, border 375ms, height 0.275s, line-height 0.275s;
       background: none;
       height: 65px;
       line-height: 65px;
@@ -445,6 +456,16 @@ NAVIGATION STYLES
         background-color: rgba(255, 255, 255, 0.1); }
         html.secondary-scrolled .main-nav > li a:hover, html.secondary-scrolled .main-nav > li a:focus {
           background-color: rgba(0, 0, 0, 0.5); }
+        .main-nav > li a:hover span, .main-nav > li a:focus span {
+          border-color: #000; }
+      .main-nav > li a span {
+        -webkit-transition: border 375ms;
+        -moz-transition: border 375ms;
+        -ms-transition: border 375ms;
+        -o-transition: border 375ms;
+        transition: border 375ms;
+        padding-bottom: 3px;
+        border-bottom: 1px solid transparent; }
     .main-nav > li li a {
       height: 55px;
       line-height: 55px; }

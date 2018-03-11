@@ -1,0 +1,17 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Tablet Landscape Stylsheet
+
+******************************************************************/
+
+.wrap {
+	width:960px;
+}
+.thumb-grid {
+	@include clearfix;
+	& > li {
+		width:16.6666%;
+	}
+}
