@@ -25,10 +25,10 @@
 									if (count($workGalleryMeta[0]) > 0 && $workGalleryMeta[0] != '' && !ctype_space($workGalleryMeta[0])) { ?>
 									<ul class="work-gallery">
 										<?php foreach($workGalleryMeta as $key => $galleryItem) {
-											$img_meta = wp_get_attachment_metadata($galleryItem[image_id]);
+											$img_meta = wp_get_attachment_metadata($galleryItem['image_id']);
 											?>
 											<li><?php /* <pre><?php print_r($galleryItem); ?></pre> */ ?>
-												<img src="<?php echo $galleryItem[image]; ?>"<?php echo $galleryItem[offset_right] ? ' style="margin-left:'.$galleryItem[offset_right].'px"' : ''; ?> alt="<?php echo $img_meta[image_meta][title] ? $img_meta[image_meta][title] : $img_meta[file]; ?>">
+												<img src="<?php echo $galleryItem['image']; ?>"<?php echo $galleryItem['offset_right'] ? ' style="margin-left:'.$galleryItem['offset_right'].'px"' : ''; ?> alt="<?php echo $img_meta['image_meta']['title'] ? $img_meta['image_meta']['title'] : $img_meta['file']; ?>">
 											</li>
 										<?php } ?>
 									</ul>
