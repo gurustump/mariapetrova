@@ -53,9 +53,9 @@ $prefixes: ("-webkit-", "-moz-", "-ms-", "-o-",  "");
 	}
 }
 
-@mixin v-center {
+@mixin v-center($position:relative) {
 	@include transform(translateY(-50%));
-	position:relative;
+	position:$position;
 	top:50%;
 }
 /*********************

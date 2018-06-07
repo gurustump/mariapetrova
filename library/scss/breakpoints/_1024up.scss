@@ -10,8 +10,63 @@ Stylesheet: Tablet Landscape Stylsheet
 	width:960px;
 }
 .thumb-grid {
-	@include clearfix;
 	& > li {
 		width:16.6666%;
+		a {
+			padding-bottom:100%;
+			overflow:hidden;
+			position:relative;
+			height:100%;
+			img {
+				position:absolute;
+				left:50%;
+				top:50%;
+				@include transition(transform $transition-speed);
+				@include transform(translate(-50%,-50%));
+				height:100%;
+				width:100%;
+			}
+			.hover {
+				opacity:0;
+				display:block;
+				position:absolute;
+				@include transform(translate(-50%,-50%));
+				background:rgba($black,.7);
+				height:100%;
+				width:100%;
+				left:50%;
+				top:50%;
+				color:$white;
+				text-align:center;
+				@include transition(opacity $transition-speed, height $transition-speed, width $transition-speed);
+				font-size:36px;
+				span {
+					display:block;
+				}
+				.hover-inner {
+					@include transition(transform $transition-speed);
+					@include transform(scale(1.5, 1.5) translateY(-50%));
+					position:relative;
+					top:50%;
+				}
+				.action {
+					font-size:24px;
+					&:before, &:after {
+						content:' - ';
+					}
+				}
+			}
+			&:hover {
+				img {
+					@include transform(translate(-50%,-50%) scale(1.5,1.5));
+				}
+				.hover {
+					opacity:1;
+					.hover-inner {
+						@include transform(scale(1, 1) translateY(-50%));
+					}
+				}
+			}
+		}
 	}
 }

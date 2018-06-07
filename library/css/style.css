@@ -1720,6 +1720,8 @@ POSTS & CONTENT STYLES
     .thumb-grid > li a img {
       display: block;
       width: 100%; }
+    .thumb-grid > li a .hover {
+      display: none; }
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -2277,14 +2279,90 @@ Stylesheet: Tablet Landscape Stylsheet
 ******************************************************************/
   .wrap {
     width: 960px; }
-  .thumb-grid:after {
-    content: ".";
-    height: 0;
-    display: block;
-    visibility: hidden;
-    clear: both; }
   .thumb-grid > li {
-    width: 16.6666%; } }
+    width: 16.6666%; }
+    .thumb-grid > li a {
+      padding-bottom: 100%;
+      overflow: hidden;
+      position: relative;
+      height: 100%; }
+      .thumb-grid > li a img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transition: transform 375ms;
+        -moz-transition: transform 375ms;
+        -ms-transition: transform 375ms;
+        -o-transition: transform 375ms;
+        -webkit-transition: -webkit-transform 375ms;
+        transition: -webkit-transform 375ms;
+        transition: transform 375ms;
+        transition: transform 375ms, -webkit-transform 375ms;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        height: 100%;
+        width: 100%; }
+      .thumb-grid > li a .hover {
+        opacity: 0;
+        display: block;
+        position: absolute;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.7);
+        height: 100%;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        color: #fff;
+        text-align: center;
+        -webkit-transition: opacity 375ms, height 375ms, width 375ms;
+        -moz-transition: opacity 375ms, height 375ms, width 375ms;
+        -ms-transition: opacity 375ms, height 375ms, width 375ms;
+        -o-transition: opacity 375ms, height 375ms, width 375ms;
+        transition: opacity 375ms, height 375ms, width 375ms;
+        font-size: 36px; }
+        .thumb-grid > li a .hover span {
+          display: block; }
+        .thumb-grid > li a .hover .hover-inner {
+          -webkit-transition: transform 375ms;
+          -moz-transition: transform 375ms;
+          -ms-transition: transform 375ms;
+          -o-transition: transform 375ms;
+          -webkit-transition: -webkit-transform 375ms;
+          transition: -webkit-transform 375ms;
+          transition: transform 375ms;
+          transition: transform 375ms, -webkit-transform 375ms;
+          -webkit-transform: scale(1.5, 1.5) translateY(-50%);
+          -moz-transform: scale(1.5, 1.5) translateY(-50%);
+          -ms-transform: scale(1.5, 1.5) translateY(-50%);
+          -o-transform: scale(1.5, 1.5) translateY(-50%);
+          transform: scale(1.5, 1.5) translateY(-50%);
+          position: relative;
+          top: 50%; }
+        .thumb-grid > li a .hover .action {
+          font-size: 24px; }
+          .thumb-grid > li a .hover .action:before, .thumb-grid > li a .hover .action:after {
+            content: ' - '; }
+      .thumb-grid > li a:hover img {
+        -webkit-transform: translate(-50%, -50%) scale(1.5, 1.5);
+        -moz-transform: translate(-50%, -50%) scale(1.5, 1.5);
+        -ms-transform: translate(-50%, -50%) scale(1.5, 1.5);
+        -o-transform: translate(-50%, -50%) scale(1.5, 1.5);
+        transform: translate(-50%, -50%) scale(1.5, 1.5); }
+      .thumb-grid > li a:hover .hover {
+        opacity: 1; }
+        .thumb-grid > li a:hover .hover .hover-inner {
+          -webkit-transform: scale(1, 1) translateY(-50%);
+          -moz-transform: scale(1, 1) translateY(-50%);
+          -ms-transform: scale(1, 1) translateY(-50%);
+          -o-transform: scale(1, 1) translateY(-50%);
+          transform: scale(1, 1) translateY(-50%); } }
 
 /*********************
 DESKTOP

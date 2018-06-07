@@ -22,7 +22,7 @@
 									print_r($workMeta);
 									echo '</pre>';*/
 									$workGalleryMeta = get_post_meta(get_the_ID(), '_gurustump_works_gallery_item', true);
-									if (count($workGalleryMeta[0]) > 0 && $workGalleryMeta[0] != '' && !ctype_space($workGalleryMeta[0])) { ?>
+									if ($workGalleryMeta[0] != '' && count($workGalleryMeta[0]) > 0 && !ctype_space($workGalleryMeta[0])) { ?>
 									<ul class="work-gallery">
 										<?php foreach($workGalleryMeta as $key => $galleryItem) {
 											$img_meta = wp_get_attachment_metadata($galleryItem['image_id']);
@@ -66,6 +66,9 @@
 												<pre><?php echo get_permalink($item->ID); ?></pre> */ ?>
 												<a href="<?php echo get_permalink($item->ID); ?>">
 													<img class="item-thumb" src="<?php echo $itemThumbArray[0]; ?>" />
+													<span class="hover">
+														<span class="hover-inner"><?php echo $item->post_title; ?><span class="action">view</span></span>
+													</span>
 												</a>
 											</li>
 										<?php } ?>

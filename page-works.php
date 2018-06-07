@@ -65,10 +65,14 @@
 											<li>
 												<?php /* <pre><?php print_r($item); ?></pre>
 												<pre style="background:black;color:yellow;padding:20px;"><?php print_r($itemThumbArray); ?></pre>
+												<pre><?php print_r($item); ?></pre> 
 												<pre><?php print_r($itemMeta); ?></pre> 
 												<pre><?php echo get_permalink($item->ID); ?></pre> */ ?>
 												<a href="<?php echo get_permalink($item->ID); ?>">
 													<img class="item-thumb" src="<?php echo $itemThumbArray[0]; ?>" />
+													<span class="hover">
+														<span class="hover-inner"><?php echo $item->post_title; ?><span class="action">view</span></span>
+													</span>
 												</a>
 											</li>
 										<?php } ?>
