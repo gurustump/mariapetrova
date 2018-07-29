@@ -255,8 +255,8 @@ GENERAL STYLES
 LAYOUT & GRID STYLES
 *********************/
 .wrap {
-  width: 728px;
-  margin: 0 auto; }
+  padding-left: 30px;
+  padding-right: 30px; }
 
 /*********************
 HEADER STYLES
@@ -370,6 +370,47 @@ mobile. Make sure to double check these!
 			*/ }
 
 /* end .footer-links */
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+body.single-works.height-limited .work-description {
+  float: left;
+  position: static; }
+
+body.single-works.height-limited .work-gallery {
+  margin-left: -220px; }
+
+body.single-works .entry-content {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 100%; }
+
+body.single-works .work-description {
+  width: 220px;
+  position: fixed;
+  left: 30px;
+  top: 101px; }
+
+body.single-works .work-gallery {
+  float: left;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 235px; }
+  body.single-works .work-gallery > li {
+    max-width: 1260px;
+    margin: 0 auto; }
+
+body.single-works .thumb-grid-container {
+  position: relative; }
+
 /******************************************************************
 Site Name:
 Author:
@@ -502,6 +543,16 @@ NAVIGATION STYLES
 /* end .nav */
 .trigger-nav {
   display: none; }
+
+/*********************
+PAGE SPECIFIC STYLES
+*********************/
+body.single-works nav.prev-next {
+  top: 195px;
+  z-index: 9000; }
+
+body.single-works .work-description {
+  top: 216px; }
 
 /*
 you can call the larger styles if you want, but there's really no need

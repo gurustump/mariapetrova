@@ -885,30 +885,29 @@ Here's a quick video to show how it works:
 http://www.youtube.com/watch?v=hwdVpKiJzac
 
 *********************/
-.blue-btn, .comment-reply-link, #submit {
+.btn, .blue-btn, .comment-reply-link, #submit {
   display: inline-block;
   position: relative;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", "adelle-sans", "Helvetica Neue", Helvetica, "Lato", Arial, sans-serif;
   text-decoration: none;
-  color: #fff;
+  color: #8a8a8a;
+  border: 2px solid #8a8a8a;
   font-size: 0.9em;
-  font-size: 34px;
-  line-height: 34px;
-  font-weight: normal;
-  padding: 0 24px;
-  border-radius: 4px;
-  border: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 1em 2.5em;
   cursor: pointer;
-  -webkit-transition: background-color 0.14s ease-in-out;
-  -moz-transition: background-color 0.14s ease-in-out;
-  -ms-transition: background-color 0.14s ease-in-out;
-  -o-transition: background-color 0.14s ease-in-out;
-  transition: background-color 0.14s ease-in-out; }
-  .blue-btn:hover, .comment-reply-link:hover, #submit:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus {
+  -webkit-transition: background-color 0.14s ease-in-out, color 0.14s ease-in-out;
+  -moz-transition: background-color 0.14s ease-in-out, color 0.14s ease-in-out;
+  -ms-transition: background-color 0.14s ease-in-out, color 0.14s ease-in-out;
+  -o-transition: background-color 0.14s ease-in-out, color 0.14s ease-in-out;
+  transition: background-color 0.14s ease-in-out, color 0.14s ease-in-out; }
+  .btn:hover, .blue-btn:hover, .comment-reply-link:hover, #submit:hover, .btn:focus, .blue-btn:focus, .comment-reply-link:focus, #submit:focus {
     color: #fff;
+    background-color: #8a8a8a;
     text-decoration: none;
     outline: none; }
-  .blue-btn:active, .comment-reply-link:active, #submit:active {
+  .btn:active, .blue-btn:active, .comment-reply-link:active, #submit:active {
     top: 1px; }
 
 /*
@@ -961,21 +960,20 @@ select,
 textarea,
 .field {
   display: block;
-  height: 40px;
   line-height: 1em;
-  padding: 0 12px;
+  padding: 12px;
   margin-bottom: 14px;
   font-size: 1em;
   color: #454545;
-  border-radius: 3px;
   vertical-align: middle;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 0;
+  border: 1px solid #ccc;
   width: 100%;
-  max-width: 400px;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #454545;
+  font-family: "adelle-sans", "Helvetica Neue", Helvetica, "Lato", Arial, sans-serif;
+  background-color: #fafafa;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-transition: background-color 0.24s ease-in-out;
   -moz-transition: background-color 0.24s ease-in-out;
   -ms-transition: background-color 0.24s ease-in-out;
@@ -1014,7 +1012,7 @@ textarea,
   textarea:active,
   .field:focus,
   .field:active {
-    background-color: #4f4f4f;
+    background-color: #fff;
     outline: none; }
   input[type="text"].error, input[type="text"].is-invalid,
   input[type="password"].error,
@@ -1264,7 +1262,7 @@ html.mariapetrova {
 
 body {
   height: 100%;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "adelle-sans", "Helvetica Neue", Helvetica, "Lato", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   color: #454545;
@@ -1331,7 +1329,9 @@ LAYOUT & GRID STYLES
   margin: 0; }
 
 .wrap {
-  margin: 0 15px; }
+  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto; }
 
 /*********************
 LINK STYLES
@@ -1939,7 +1939,8 @@ view.
 */
 /* end .footer-links */
 .copyright {
-  font-size: 10px; }
+  font-size: 10px;
+  text-align: center; }
 
 /******************************************
 PAGE SPECIFIC STYLES
@@ -1948,51 +1949,18 @@ body.single-works .hentry {
   position: relative; }
 
 body.single-works nav.prev-next {
-  position: absolute;
-  top: 0;
-  right: 0; }
-  body.single-works nav.prev-next li {
-    float: left;
-    margin-left: 2px; }
-  body.single-works nav.prev-next a {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #2e2e2e;
-    text-indent: -9999px;
-    color: transparent;
-    font-size: 0;
-    position: relative;
-    -webkit-transition: background-color 375ms;
-    -moz-transition: background-color 375ms;
-    -ms-transition: background-color 375ms;
-    -o-transition: background-color 375ms;
-    transition: background-color 375ms; }
-    body.single-works nav.prev-next a:before {
-      content: '';
-      border-color: #fff;
-      border-style: solid;
-      border-width: 2px 2px 0 0;
-      display: block;
-      -webkit-transform: rotate(45deg);
-      -moz-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      -o-transform: rotate(45deg);
-      transform: rotate(45deg);
-      height: 10px;
-      width: 10px;
-      position: absolute;
-      top: 14px;
-      left: 11px; }
-    body.single-works nav.prev-next a:hover {
-      background-color: rgba(46, 46, 46, 0.4); }
-  body.single-works nav.prev-next .prev a:before {
-    -webkit-transform: rotate(-135deg);
-    -moz-transform: rotate(-135deg);
-    -ms-transform: rotate(-135deg);
-    -o-transform: rotate(-135deg);
-    transform: rotate(-135deg);
-    left: 17px; }
+  display: none; }
+
+body.single-works .entry-content {
+  margin-bottom: 20px; }
+
+body.single-works .work-description h1 {
+  font-size: 26px;
+  margin-bottom: 13px;
+  font-weight: 300; }
+
+body.single-works .work-gallery > li {
+  text-align: center; }
 
 /******************************************
 ADMIN BAR CUSTOMIZATION
@@ -2159,8 +2127,8 @@ GENERAL STYLES
 LAYOUT & GRID STYLES
 *********************/
   .wrap {
-    width: 728px;
-    margin: 0 auto; }
+    padding-left: 30px;
+    padding-right: 30px; }
   /*********************
 HEADER STYLES
 *********************/
@@ -2267,7 +2235,42 @@ mobile. Make sure to double check these!
 			it's very rare to have multi-depth menus in
 			the footer.
 			*/ }
-  /* end .footer-links */ }
+  /* end .footer-links */
+  /******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+  body.single-works.height-limited .work-description {
+    float: left;
+    position: static; }
+  body.single-works.height-limited .work-gallery {
+    margin-left: -220px; }
+  body.single-works .entry-content {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%; }
+  body.single-works .work-description {
+    width: 220px;
+    position: fixed;
+    left: 30px;
+    top: 101px; }
+  body.single-works .work-gallery {
+    float: left;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 235px; }
+    body.single-works .work-gallery > li {
+      max-width: 1260px;
+      margin: 0 auto; }
+  body.single-works .thumb-grid-container {
+    position: relative; } }
 
 @media only screen and (min-width: 1024px) {
   /******************************************************************
@@ -2277,8 +2280,6 @@ Author:
 Stylesheet: Tablet Landscape Stylsheet
 
 ******************************************************************/
-  .wrap {
-    width: 960px; }
   .thumb-grid > li {
     width: 16.6666%; }
     .thumb-grid > li a {
@@ -2362,7 +2363,57 @@ Stylesheet: Tablet Landscape Stylsheet
           -moz-transform: scale(1, 1) translateY(-50%);
           -ms-transform: scale(1, 1) translateY(-50%);
           -o-transform: scale(1, 1) translateY(-50%);
-          transform: scale(1, 1) translateY(-50%); } }
+          transform: scale(1, 1) translateY(-50%); }
+  body.single-works nav.prev-next {
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    padding: 0 20px; }
+    body.single-works nav.prev-next li {
+      float: left;
+      margin-left: 2px; }
+    body.single-works nav.prev-next a {
+      display: block;
+      width: 40px;
+      height: 40px;
+      background-color: #2e2e2e;
+      text-indent: -9999px;
+      color: transparent;
+      font-size: 0;
+      position: relative;
+      -webkit-transition: background-color 375ms;
+      -moz-transition: background-color 375ms;
+      -ms-transition: background-color 375ms;
+      -o-transition: background-color 375ms;
+      transition: background-color 375ms; }
+      body.single-works nav.prev-next a:before {
+        content: '';
+        border-color: #fff;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        display: block;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        top: 14px;
+        left: 11px; }
+      body.single-works nav.prev-next a:hover {
+        background-color: rgba(46, 46, 46, 0.4); }
+    body.single-works nav.prev-next .prev a:before {
+      -webkit-transform: rotate(-135deg);
+      -moz-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+      left: 17px; }
+  body.single-works .work-gallery {
+    padding-right: 94px; } }
 
 /*********************
 DESKTOP
@@ -2495,7 +2546,15 @@ NAVIGATION STYLES
         height: auto; }
   /* end .nav */
   .trigger-nav {
-    display: none; } }
+    display: none; }
+  /*********************
+PAGE SPECIFIC STYLES
+*********************/
+  body.single-works nav.prev-next {
+    top: 195px;
+    z-index: 9000; }
+  body.single-works .work-description {
+    top: 216px; } }
 
 /*********************
 LARGE VIEWING SIZE
@@ -2515,33 +2574,12 @@ on larger screens.
   /*********************
 PAGE SPECIFIC STYLES
 *********************/
-  body.single-works .entry-content {
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-    max-width: 100%; }
+  body.single-works.height-limited .work-gallery {
+    margin-left: -270px; }
   body.single-works .work-description {
-    width: 270px;
-    float: left;
-    /*position:absolute;
-		left:30px;
-		top:20px;*/ }
+    width: 270px; }
   body.single-works .work-gallery {
-    float: left;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-left: 320px;
-    margin-left: -320px; }
-    body.single-works .work-gallery > li {
-      width: 960px;
-      margin: 0 auto; } }
+    padding-left: 290px; } }
 
 /*********************
 RETINA (2x RESOLUTION DEVICES)

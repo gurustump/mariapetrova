@@ -24,8 +24,8 @@ LAYOUT & GRID STYLES
 *********************/
 
 .wrap {
-	width:728px;
-	margin:0 auto;
+	padding-left:30px;
+	padding-right:30px;
 }
 
 /*********************
@@ -286,3 +286,43 @@ mobile. Make sure to double check these!
 	}
 } /* end .footer-links */
 
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+body.single-works {
+	&.height-limited {
+		.work-description {
+			float:left;
+			position:static;
+		}
+		.work-gallery {
+			margin-left:-220px;
+		}
+	}
+	.entry-content {
+		width:100%;
+		@include box-sizing;
+		max-width:100%;
+	}
+	.work-description {
+		width:220px;
+		//float:left;
+		position:fixed;
+		left:30px;
+		top:101px;
+	}
+	.work-gallery {
+		float:left;
+		width:100%;
+		@include box-sizing;
+		padding-left:235px;
+		//margin-left:-220px;
+		& > li {
+			max-width:1260px;
+			margin:0 auto;
+		}
+	}
+	.thumb-grid-container {
+		position:relative;
+	}
+}

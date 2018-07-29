@@ -113,7 +113,9 @@ LAYOUT & GRID STYLES
 	margin:0;
 }
 .wrap {
-	margin:0 15px;
+	padding:0 15px;
+	max-width:1200px;
+	margin:0 auto;
 }
 
 /*********************
@@ -1040,11 +1042,12 @@ view.
 
 	}
 
-} /* end .footer-links */
+} /* end .footer-links */ 
 
 
 .copyright {
 	font-size:10px;
+	text-align:center;
 }
 
 /******************************************
@@ -1055,43 +1058,21 @@ body.single-works {
 		position:relative;
 	}
 	nav.prev-next {
-		position:absolute;
-		top:0;
-		right:0;
-		li {
-			float:left;
-			margin-left:2px;
+		display:none;
+	}
+	.entry-content {
+		margin-bottom:20px;
+	}
+	.work-description {
+		h1 {
+			font-size:26px;
+			margin-bottom:13px;
+			font-weight:300;
 		}
-		a {
-			display:block;
-			width:40px;
-			height:40px;
-			background-color:#2e2e2e;
-			text-indent:-9999px;
-			color:transparent;
-			font-size:0;
-			position:relative;
-			@include transition(background-color $transition-speed);
-			&:before {
-				content: '';
-				border-color:$white;
-				border-style:solid;
-				border-width:2px 2px 0 0;
-				display:block;
-				@include transform(rotate(45deg));
-				height:10px;
-				width:10px;
-				position:absolute;
-				top:14px;
-				left:11px;
-			}
-			&:hover {
-				background-color:rgba(#2e2e2e, .4);
-			}
-		}
-		.prev a:before {
-			@include transform(rotate(-135deg));
-			left:17px;
+	}
+	.work-gallery {
+		& > li {
+			text-align:center;
 		}
 	}
 }

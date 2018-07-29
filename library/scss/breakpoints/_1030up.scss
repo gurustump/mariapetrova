@@ -138,3 +138,15 @@ NAVIGATION STYLES
 .trigger-nav {
 	display:none;
 }
+/*********************
+PAGE SPECIFIC STYLES
+*********************/
+body.single-works {
+	nav.prev-next {
+		top:195px;
+		z-index:9000;
+	}
+	.work-description {
+		top:216px;
+	}
+}

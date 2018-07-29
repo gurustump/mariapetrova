@@ -11,8 +11,9 @@
 							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
 								<?php if ($post->post_content !== "") { ?>
-								<section class="entry-content wrap cf" itemprop="articleBody">
-									<div class="work-description">
+								<section class="entry-content wrap cf WORK_CONTAINER" itemprop="articleBody">
+									<div class="work-description WORK_DESCRIPTION">
+										<h1><?php the_title(); ?></h1>
 										<?php the_content(); ?>
 									</div>
 								
@@ -23,7 +24,7 @@
 									echo '</pre>';*/
 									$workGalleryMeta = get_post_meta(get_the_ID(), '_gurustump_works_gallery_item', true);
 									if ($workGalleryMeta[0] != '' && count($workGalleryMeta[0]) > 0 && !ctype_space($workGalleryMeta[0])) { ?>
-									<ul class="work-gallery">
+									<ul class="work-gallery WORK_GALLERY">
 										<?php foreach($workGalleryMeta as $key => $galleryItem) {
 											$img_meta = wp_get_attachment_metadata($galleryItem['image_id']);
 											?>

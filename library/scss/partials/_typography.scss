@@ -49,8 +49,10 @@ I've edited it a bit, but it's a nice starting point.
 
 
 // font stacks
-$sans-serif:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+$sans-serif:        "adelle-sans","Helvetica Neue", Helvetica, 'Lato', Arial, sans-serif;
 $serif:             "Georgia", Cambria, Times New Roman, Times, serif;
+
+$button:			"proxima-nova",$sans-serif;
 
 /*
  i imported this one in the functions file so bones would look sweet.
